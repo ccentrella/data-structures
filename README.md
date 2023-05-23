@@ -2,7 +2,7 @@
 *Algorithms and data structures practice implementation*
 
 ## Goal
-Showcase my problem solving skills, knowledge of data structures and algorithms, and ability to write clean, efficient code. Track my progress and journey of continuous improvement.
+Showcase my problem solving skills, knowledge of data structures and algorithms, and ability to write clean, efficient code.<br/>Track my progress and journey of continuous improvement.
 
 ## About Me
 
