@@ -15,7 +15,7 @@ Find me on LinkedIn: <br/>
 [in/ccentrella](https://linkedin.com/in/ccentrella)
 
 Wanna support my learning journey? Buy me a coffee! ☕️<br/>
-[https://www.buymeacoffee.com/ccentrella]()
+[buymeacoffee.com/ccentrella](https://www.buymeacoffee.com/ccentrella) 
 ***
 I'd love to hear from you! Feel free to reach out through [this link](https://chriscentrella.com/contact).
 
