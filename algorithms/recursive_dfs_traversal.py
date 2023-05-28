@@ -65,44 +65,6 @@ class Graph:
     def finish_processing_vertex(self, vertex):
         print(f'Finish processing vertex {vertex}')
 
-def define_edges() -> [GraphEdge]:
-    edge_0 = GraphEdge(3)
-    edge_0.next_edge = GraphEdge(5)
-    edge_0.next_edge.next_edge = GraphEdge(6)
-    edge_0.next_edge.next_edge.next_edge = GraphEdge(2)
-
-    edge_1 = GraphEdge(4)
-    edge_1.next_edge = GraphEdge(2)
-    edge_1.next_edge.next_edge = GraphEdge(3)
-    edge_1.next_edge.next_edge.next_edge = GraphEdge(7)
-
-    edge_2 = GraphEdge(8)
-    edge_2.next_edge = GraphEdge(0)
-    edge_2.next_edge.next_edge = GraphEdge(1)
-    edge_2.next_edge.next_edge.next_edge = GraphEdge(6)
-
-    edge_3 = GraphEdge(7)
-
-    edge_4 = GraphEdge(2)
-
-    edge_5 = GraphEdge(8)
-    edge_5.next_edge = GraphEdge(2)
-    edge_5.next_edge.next_edge = GraphEdge(1)
-    edge_5.next_edge.next_edge.next_edge = GraphEdge(7)
-    edge_5.next_edge.next_edge.next_edge.next_edge = GraphEdge(0)
-    edge_5.next_edge.next_edge.next_edge.next_edge.next_edge = GraphEdge(4)
-
-    edge_6 = GraphEdge(3)
-    edge_6.next_edge = GraphEdge(1)
-
-    edge_7 = GraphEdge(4)
-    edge_7.next_edge = GraphEdge(1)
-
-    edge_8 = GraphEdge(2)
-
-    edges = [edge_0, edge_1, edge_2, edge_3, edge_4, edge_5, edge_6, edge_7, edge_8]
-    return edges
-
 # Entrypoint
 parent_directory = path.dirname(os.getcwd())
 graph_file = path.join(parent_directory, 'data', 'graph.json')
