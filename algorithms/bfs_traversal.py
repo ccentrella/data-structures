@@ -104,8 +104,8 @@ def define_edges() -> [GraphEdge]:
     edges = [edge_0, edge_1, edge_2, edge_3, edge_4, edge_5, edge_6, edge_7, edge_8]
     return edges
 
-# Entry point
-parent_directory = os.path.dirname(os.getcwd())
+# Entrypoint
+parent_directory = path.dirname(os.getcwd())
 graph_file = path.join(parent_directory, 'data', 'graph.json')
 graph = Graph(graph_file)
 graph.start_traversal()
