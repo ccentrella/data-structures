@@ -53,7 +53,7 @@ class Graph:
             self.traverse(top_of_queue, queue, discovered)
 
     def traverse(self, vertex, queue, discovered):
-        current_edge = self.edges[vertex]
+        current_edge: GraphEdge = self.edges[vertex]
         while current_edge is not None:
             current_index = current_edge.value
             if not discovered[current_index]:

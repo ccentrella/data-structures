@@ -49,13 +49,13 @@ class Graph:
     def traverse(self, root, discovered, parent):
         discovered[root] = True
         self.start_processing_vertex(root)
-        current_element = self.edges[root]
-        while current_element is not None:
-            current_index = current_element.value
+        current_edge: GraphEdge = self.edges[root]
+        while current_edge is not None:
+            current_index = current_edge.value
             if not discovered[current_index]:
                 parent[current_index] = root
                 self.traverse(current_index, discovered, parent)
-            current_element = current_element.next_edge
+            current_edge = current_edge.next_edge
         self.finish_processing_vertex(root)
 
     def start_processing_vertex(self, vertex):

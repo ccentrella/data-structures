@@ -54,7 +54,7 @@ class Graph:
 
     def traverse(self, vertex, queue, discovered):
         self.process_vertex(vertex)
-        current_edge = self.edges[vertex]
+        current_edge: GraphEdge = self.edges[vertex]
         while current_edge is not None:
             current_index = current_edge.value
             if not discovered[current_index]:
@@ -64,7 +64,7 @@ class Graph:
 
     def process_vertex(self, vertex):
         label = self.labels[vertex]
-        print(f'Processing vertex: Vertex {vertex} is {label}')
+        print(f'Processing vertex {vertex}: {label}')
 
 # Entrypoint
 parent_directory = path.dirname(os.getcwd())
