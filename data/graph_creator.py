@@ -28,7 +28,7 @@ class GraphCreator:
         self.graph_edges = {}
         for index in range(vertex_count):
             edges = []
-            edge_count = random.randint(0, maximum_edges)
+            edge_count = random.randint(1, maximum_edges)
             for edge_index in range(edge_count):
                 random_vertex = random.randint(0, vertex_count - 1)
                 edges.append(random_vertex)
@@ -68,4 +68,4 @@ class GraphCreator:
 parent_directory = os.getcwd()
 graph_file = path.join(parent_directory, 'graph-extended.json')
 graph = GraphCreator()
-graph.create_vertices(97)
+graph.create_vertices(100, 25, 2000)
