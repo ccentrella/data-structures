@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from os import path
 
 class GraphEdge:
@@ -12,6 +13,7 @@ class Graph:
     def __init__(self, file_location=None):
         self.edges: [GraphEdge] = []
         self.labels: [int] = []
+        self.weight: int = 0
 
         if file_location is not None:
             self.load_file(file_location)
@@ -44,6 +46,49 @@ class Graph:
         new_edge = GraphEdge(y, weight, current_edge)
         self.edges[x] = new_edge
 
+    def spanning_tree(self, root=0):
+        if len(self.edges) <= root:
+            return
+
+        tree: [int] = [root]
+        self.begin_processing_tree()
+        while len(tree) < len(self.edges):
+            optimal_vertex, optimal_edge = self.next_vertex(tree)
+            tree.append(optimal_vertex)
+            self.process_edge(optimal_vertex, optimal_edge)
+        self.finish_processing_tree()
+
+    def next_vertex(self, tree) -> (int, GraphEdge):
+        optimal_vertex: int = -1
+        optimal_edge: GraphEdge = GraphEdge(tree[0], sys.maxsize)
+        for index, graph_edge in enumerate(self.edges):
+            if index in tree:
+                continue
+            current_edge = graph_edge
+            while current_edge is not None:
+                current_value = current_edge.value
+                if current_value in tree and current_edge.weight < optimal_edge.weight:
+                    optimal_vertex = index
+                    optimal_edge = current_edge
+                current_edge = current_edge.next_edge
+
+        return optimal_vertex, optimal_edge
+
+    def process_edge(self, x, edge):
+        y = edge.value
+        weight = edge.weight
+        self.weight += weight
+        print(f'Adding vertex {x} to spanning tree, via edge ({x}, {y}). Weight is {weight}.')
+
+    def begin_processing_tree(self):
+        self.weight = 0
+        print(f'Creating spanning tree...\n')
+
+    def finish_processing_tree(self):
+        print(f'\nSpanning tree created successfully.')
+        print(f'Total weight: {self.weight}')
+
 parent_directory = path.dirname(os.getcwd())
 graph_file = path.join(parent_directory, 'data', 'graph.json')
 graph = Graph(graph_file)
+graph.spanning_tree()
