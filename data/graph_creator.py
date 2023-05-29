@@ -35,19 +35,18 @@ class GraphCreator:
             file.write(graph_data)
             print('File written successfully.\n')
 
-    def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, allow_degree_zero=False):
-        self.create_edges(vertex_count, maximum_edges, allow_degree_zero)
+    def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, minimum_edges=1):
+        self.create_edges(vertex_count, maximum_edges, minimum_edges)
         self.create_edge_weights(maximum_weight)
         label_maximum = max(1000, vertex_count * 5)
         self.create_labels(label_maximum)
 
-    def create_edges(self, vertex_count, maximum_edges, allow_degree_zero=False):
+    def create_edges(self, vertex_count, maximum_edges, minimum_edges=1):
         print("Creating edges...\n")
         self.graph_edges = {}
-        min_edges = 0 if allow_degree_zero else 1
         for index in range(vertex_count):
             edges = []
-            edge_count = random.randint(min_edges, maximum_edges)
+            edge_count = random.randint(minimum_edges, maximum_edges)
             for edge_index in range(edge_count):
                 random_vertex = random.randint(0, vertex_count - 1)
                 edges.append(random_vertex)
@@ -98,5 +97,5 @@ class GraphCreator:
 parent_directory = os.getcwd()
 graph_file = path.join(parent_directory, 'graph-sample.json')
 graph = GraphCreator()
-graph.create_vertices(1000, 50, 5000, False)
+graph.create_vertices(1000, 50, 5000, 2)
 graph.save(graph_file)
