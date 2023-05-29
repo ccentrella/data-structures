@@ -31,7 +31,7 @@ class GraphCreator:
             graph_structure = {'edges': self.graph_edges,
                                'edge-weights': self.graph_edge_weights,
                                'labels': self.labels}
-            graph_data = json.dumps(graph_structure, sort_keys=True)
+            graph_data = json.dumps(graph_structure)
             file.write(graph_data)
             print('File written successfully.\n')
 
@@ -96,7 +96,7 @@ class GraphCreator:
             return True
 
 parent_directory = os.getcwd()
-graph_file = path.join(parent_directory, 'graph_one_thousand.json')
+graph_file = path.join(parent_directory, 'graph_one_thousand_connected.json')
 graph = GraphCreator()
-graph.create_vertices(1000, 50, 5000, False)
+graph.create_vertices(1000, 50, 5000, True)
 graph.save(graph_file)
