@@ -21,7 +21,7 @@ class GraphCreator:
 
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000):
         self.create_edges(vertex_count, maximum_edges)
-        self.create_weights(maximum_weight)
+        self.create_edge_weights(maximum_weight)
 
     def create_edges(self, vertex_count, maximum_edges):
         self.begin_processing_edges()
@@ -36,8 +36,8 @@ class GraphCreator:
             self.graph_edges[index] = edges
         self.finish_processing_edges()
 
-    def create_weights(self, maximum_weight=2000):
-        self.begin_processing_weights()
+    def create_edge_weights(self, maximum_weight=2000):
+        self.begin_processing_edge_weights()
         self.graph_edge_weights = {}
         for index, graph_edge in self.graph_edges.items():
             length = len(graph_edge)
@@ -47,7 +47,7 @@ class GraphCreator:
                 weights.append(random_int)
             print(f'\"{index}\": {weights},')
             self.graph_edge_weights[index] = weights
-        self.finish_processing_weights()
+        self.finish_processing_edge_weights()
 
     @staticmethod
     def begin_processing_edges():
@@ -58,12 +58,20 @@ class GraphCreator:
         print("\nEdges created successfully.\n")
 
     @staticmethod
-    def begin_processing_weights():
-        print("Creating weights...\n")
+    def begin_processing_edge_weights():
+        print("Creating edge weights...\n")
 
     @staticmethod
-    def finish_processing_weights():
-        print("\nWeights created successfully.\n")
+    def finish_processing_edge_weights():
+        print("\nEdge weights created successfully.\n")
+
+    @staticmethod
+    def begin_processing_labels():
+        print("Creating labels...\n")
+
+    @staticmethod
+    def finish_processing_labels():
+        print("\nLabels created successfully.\n")
 
 parent_directory = os.getcwd()
 graph_file = path.join(parent_directory, 'graph-extended.json')
