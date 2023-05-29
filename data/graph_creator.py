@@ -51,7 +51,7 @@ class GraphCreator:
             self.graph_edge_weights[index] = weights
         self.finish_processing_edge_weights()
 
-    def create_labels(self, maximum_value):
+    def create_labels(self, maximum_value=1000):
         self.begin_processing_labels()
         self.labels = {}
         for index in self.graph_edges:
