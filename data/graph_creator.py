@@ -13,6 +13,7 @@ class GraphCreator:
             self.open_file(file_location)
 
     def open_file(self, file_location):
+        print(f'Opening file {file_location}.')
         with open(file_location, 'r') as file:
             data = file.read()
             graph_data = json.loads(data)
@@ -22,6 +23,17 @@ class GraphCreator:
                 self.graph_edge_weights = graph_data['edge-weights']
             if 'labels' in graph_data:
                 self.graph_edge_weights = graph_data['labels']
+            print('File opened successfully.')
+
+    def save(self, file_location):
+        print(f'Writing to file {file_location}.')
+        with open(file_location, 'w') as file:
+            graph_structure = {'edges': self.graph_edges,
+                               'edge-weights': self.graph_edge_weights,
+                               'labels': self.labels}
+            graph_data = json.dumps(graph_structure, sort_keys=True)
+            file.write(graph_data)
+            print('File written successfully.\n')
 
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, connected=True):
         self.create_edges(vertex_count, maximum_edges)
@@ -68,6 +80,7 @@ class GraphCreator:
         print("\nLabels created successfully.\n")
 
 parent_directory = os.getcwd()
-graph_file = path.join(parent_directory, 'graph-extended.json')
-graph = GraphCreator(graph_file)
-graph.create_labels(1200)
+graph_file = path.join(parent_directory, 'graph_ten_thousand.json')
+graph = GraphCreator()
+graph.create_vertices(100, 50, 5000, False)
+graph.save(graph_file)
