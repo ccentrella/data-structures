@@ -7,6 +7,7 @@ class GraphCreator:
     def __init__(self, file_location=None):
         self.graph_edges = {}
         self.graph_edge_weights = {}
+        self.labels = {}
 
         if file_location is not None:
             self.open_file(file_location)
@@ -22,6 +23,7 @@ class GraphCreator:
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000):
         self.create_edges(vertex_count, maximum_edges)
         self.create_edge_weights(maximum_weight)
+        self.create_labels()
 
     def create_edges(self, vertex_count, maximum_edges):
         self.begin_processing_edges()
@@ -49,6 +51,18 @@ class GraphCreator:
             self.graph_edge_weights[index] = weights
         self.finish_processing_edge_weights()
 
+    def create_labels(self, maximum_value):
+        self.begin_processing_labels()
+        self.labels = {}
+        for index in self.graph_edges:
+            while True:
+                random_int = random.randint(1, maximum_value)
+                if (random_int % 5 == 0) and (random_int not in self.labels.values()):
+                    break
+            print(f'\"{index}\": {random_int},')
+            self.labels[index] = random_int
+        self.finish_processing_labels()
+
     @staticmethod
     def begin_processing_edges():
         print("Creating edges...\n")
@@ -75,5 +89,5 @@ class GraphCreator:
 
 parent_directory = os.getcwd()
 graph_file = path.join(parent_directory, 'graph-extended.json')
-graph = GraphCreator()
-graph.create_vertices(100, 25, 2000)
+graph = GraphCreator(graph_file)
+graph.create_labels(1200)
