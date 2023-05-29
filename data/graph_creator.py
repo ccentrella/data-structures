@@ -26,7 +26,7 @@ class GraphCreator:
         self.create_labels()
 
     def create_edges(self, vertex_count, maximum_edges):
-        self.begin_processing_edges()
+        print("Creating edges...\n")
         self.graph_edges = {}
         for index in range(vertex_count):
             edges = []
@@ -36,10 +36,10 @@ class GraphCreator:
                 edges.append(random_vertex)
             print(f'\"{index}\": {edges},')
             self.graph_edges[index] = edges
-        self.finish_processing_edges()
+        print("\nEdges created successfully.\n")
 
     def create_edge_weights(self, maximum_weight=2000):
-        self.begin_processing_edge_weights()
+        print("Creating edge weights...\n")
         self.graph_edge_weights = {}
         for index, graph_edge in self.graph_edges.items():
             length = len(graph_edge)
@@ -49,10 +49,10 @@ class GraphCreator:
                 weights.append(random_int)
             print(f'\"{index}\": {weights},')
             self.graph_edge_weights[index] = weights
-        self.finish_processing_edge_weights()
+        print("\nEdge weights created successfully.\n")
 
     def create_labels(self, maximum_value=1000):
-        self.begin_processing_labels()
+        print("Creating labels...\n")
         self.labels = {}
         for index in self.graph_edges:
             while True:
@@ -61,30 +61,6 @@ class GraphCreator:
                     break
             print(f'\"{index}\": {random_int},')
             self.labels[index] = random_int
-        self.finish_processing_labels()
-
-    @staticmethod
-    def begin_processing_edges():
-        print("Creating edges...\n")
-
-    @staticmethod
-    def finish_processing_edges():
-        print("\nEdges created successfully.\n")
-
-    @staticmethod
-    def begin_processing_edge_weights():
-        print("Creating edge weights...\n")
-
-    @staticmethod
-    def finish_processing_edge_weights():
-        print("\nEdge weights created successfully.\n")
-
-    @staticmethod
-    def begin_processing_labels():
-        print("Creating labels...\n")
-
-    @staticmethod
-    def finish_processing_labels():
         print("\nLabels created successfully.\n")
 
 parent_directory = os.getcwd()
