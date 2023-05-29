@@ -19,6 +19,8 @@ class GraphCreator:
             self.graph_edges = graph_data['edges']
             if 'edge-weights' in graph_data:
                 self.graph_edge_weights = graph_data['edge-weights']
+            if 'labels' in graph_data:
+                self.graph_edge_weights = graph_data['labels']
 
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000):
         self.create_edges(vertex_count, maximum_edges)
