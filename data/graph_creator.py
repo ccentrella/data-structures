@@ -16,7 +16,8 @@ class GraphCreator:
         with open(file_location, 'r') as file:
             data = file.read()
             graph_data = json.loads(data)
-            self.graph_edges = graph_data['edges']
+            if 'edges' in graph_data:
+                self.graph_edges = graph_data['edges']
             if 'edge-weights' in graph_data:
                 self.graph_edge_weights = graph_data['edge-weights']
             if 'labels' in graph_data:
