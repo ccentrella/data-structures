@@ -36,7 +36,7 @@ class GraphCreator:
             print('File written successfully.\n')
 
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, connected=True):
-        self.create_edges(vertex_count, maximum_edges)
+        self.create_edges(vertex_count, maximum_edges, connected)
         self.create_edge_weights(maximum_weight)
         self.create_labels()
 
