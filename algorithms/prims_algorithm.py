@@ -51,12 +51,17 @@ class Graph:
             return
 
         tree: [int] = [root]
+        connected: bool = True
         self.begin_processing_tree()
         while len(tree) < len(self.edges):
             optimal_vertex, optimal_edge = self.next_vertex(tree)
-            tree.append(optimal_vertex)
-            self.process_edge(optimal_vertex, optimal_edge)
-        self.finish_processing_tree()
+            if optimal_vertex != -1:
+                tree.append(optimal_vertex)
+                self.process_edge(optimal_vertex, optimal_edge)
+            else:
+                connected = False
+                break
+        self.finish_processing_tree(connected)
 
     def next_vertex(self, tree) -> (int, GraphEdge):
         optimal_vertex: int = -1
@@ -84,11 +89,14 @@ class Graph:
         self.weight = 0
         print(f'Creating spanning tree...\n')
 
-    def finish_processing_tree(self):
+    def finish_processing_tree(self, connected):
         print(f'\nSpanning tree created successfully.')
         print(f'Total weight: {self.weight}')
 
+        if not connected:
+            print('Warning: The input graph was not connected, so some vertices weren\'t included.')
+
 parent_directory = path.dirname(os.getcwd())
-graph_file = path.join(parent_directory, 'data', 'graph.json')
+graph_file = path.join(parent_directory, 'data', 'graph_one_thousand.json')
 graph = Graph(graph_file)
 graph.spanning_tree()
