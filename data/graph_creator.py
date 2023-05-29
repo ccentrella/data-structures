@@ -23,17 +23,18 @@ class GraphCreator:
             if 'labels' in graph_data:
                 self.graph_edge_weights = graph_data['labels']
 
-    def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000):
+    def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, connected=True):
         self.create_edges(vertex_count, maximum_edges)
         self.create_edge_weights(maximum_weight)
         self.create_labels()
 
-    def create_edges(self, vertex_count, maximum_edges):
+    def create_edges(self, vertex_count, maximum_edges, connected=True):
         print("Creating edges...\n")
         self.graph_edges = {}
+        min_edges = 1 if connected else 0
         for index in range(vertex_count):
             edges = []
-            edge_count = random.randint(1, maximum_edges)
+            edge_count = random.randint(min_edges, maximum_edges)
             for edge_index in range(edge_count):
                 random_vertex = random.randint(0, vertex_count - 1)
                 edges.append(random_vertex)
