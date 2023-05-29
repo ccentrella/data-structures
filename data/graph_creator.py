@@ -38,7 +38,8 @@ class GraphCreator:
     def create_vertices(self, vertex_count, maximum_edges=20, maximum_weight=2000, connected=True):
         self.create_edges(vertex_count, maximum_edges, connected)
         self.create_edge_weights(maximum_weight)
-        self.create_labels()
+        label_maximum = max(1000, vertex_count * 5)
+        self.create_labels(label_maximum)
 
     def create_edges(self, vertex_count, maximum_edges, connected=True):
         print("Creating edges...\n")
@@ -67,20 +68,35 @@ class GraphCreator:
             self.graph_edge_weights[index] = weights
         print("\nEdge weights created successfully.\n")
 
-    def create_labels(self, maximum_value=1000):
+    def create_labels(self, maximum_value=1000, allow_any_value=False):
+        if not self.verify_maximum_label_value(maximum_value, allow_any_value):
+            return
+
         print("Creating labels...\n")
         self.labels = {}
         for index in self.graph_edges:
             while True:
                 random_int = random.randint(1, maximum_value)
-                if (random_int % 5 == 0) and (random_int not in self.labels.values()):
+                if (allow_any_value or random_int % 5 == 0) and (random_int not in self.labels.values()):
                     break
             print(f'\"{index}\": {random_int},')
             self.labels[index] = random_int
         print("\nLabels created successfully.\n")
 
+    def verify_maximum_label_value(self, maximum_value, allow_any_value):
+        vertex_count = len(self.graph_edges)
+        if maximum_value / 5 < vertex_count and not allow_any_value:
+            print("Label values are unique and divisible by five. Therefore, "
+                  "the maximum must be at least five times the number of vertices.")
+            return False
+        elif maximum_value < vertex_count:
+            print("Label values are unique, so the maximum must be at least the number of vertices.")
+            return False
+        else:
+            return True
+
 parent_directory = os.getcwd()
-graph_file = path.join(parent_directory, 'graph_ten_thousand.json')
+graph_file = path.join(parent_directory, 'graph_one_thousand.json')
 graph = GraphCreator()
-graph.create_vertices(100, 50, 5000, False)
+graph.create_vertices(1000, 50, 5000, False)
 graph.save(graph_file)
