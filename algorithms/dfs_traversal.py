@@ -46,19 +46,19 @@ class Graph:
 
         if len(self.edges) > root:
             queue.append(root)
-            discovered[root] = True
 
         while len(queue) > 0:
             top_of_queue = queue.pop()
-            self.traverse(top_of_queue, queue, discovered)
+            if not discovered[top_of_queue]:
+                self.traverse(top_of_queue, queue, discovered)
 
     def traverse(self, vertex, queue, discovered):
+        discovered[vertex] = True
         current_edge: GraphEdge = self.edges[vertex]
         while current_edge is not None:
             current_index = current_edge.value
             if not discovered[current_index]:
                 queue.append(current_index)
-                discovered[current_index] = True
             current_edge = current_edge.next_edge
         self.process_vertex(vertex)
 
